@@ -113,8 +113,7 @@ public class AddUserForm{
 			
 			addUserHeader.addComponent(emb);
 			addUserHeader.setComponentAlignment(emb, Alignment.TOP_RIGHT);
-			//addUserContainer.addComponent(addUserHeader);
-			//addUserContainer.setComponentAlignment(addUserHeader, Alignment.TOP_RIGHT);
+			
 			
 			addUserForm.addComponent(addUserHeader);
 			Label lbAddUser = new Label("Add New User...");

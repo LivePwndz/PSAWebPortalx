@@ -130,7 +130,7 @@ public class WorkArea extends VerticalLayout implements View {
 		contentC.setStyleName("content_c");
 		
 		HorizontalLayout mCC  = new HorizontalLayout();
-		//VerticalLayout mCC = new VerticalLayout();
+		
 		mCC.setSizeFull();
 		mCC.setStyleName("menu_and_content_c");
 		
@@ -153,6 +153,7 @@ public class WorkArea extends VerticalLayout implements View {
 		
 		g.setColumnExpandRatio(0, 0.0f);
 		g.setColumnExpandRatio(1, 1.0f);
+		
 		
 		
 		
