@@ -8,6 +8,7 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
 
 @SuppressWarnings("serial")
@@ -15,17 +16,20 @@ import com.vaadin.ui.UI;
 //@PreserveOnRefresh
 
 public class MatsWebPortalUI extends UI {
-	
+	//public static VaadinSession CUR_SESSION_OBJ;
 	@WebServlet(value = "/*", asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = false, ui = MatsWebPortalUI.class)
 	public static class Servlet extends VaadinServlet {
 	}
+
 	
 	
 	
 	@Override
 	protected void init(VaadinRequest request) {
+		//CUR_SESSION_OBJ =  getCurrent().getSession();
 		new Navigator(this, this);
+		
 		getNavigator().addView(Login.LOGIN,  Login.class);
 		getNavigator().addView(WorkArea.WORK_AREA, WorkArea.class);
 		UI.getCurrent().getNavigator().addViewChangeListener(new ViewChangeListener(){

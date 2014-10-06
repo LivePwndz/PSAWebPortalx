@@ -23,21 +23,37 @@ public class WorkArea extends VerticalLayout implements View {
 	public static final String WORK_AREA = "";
 	private Embedded emb;
 	private Button btnLogout;
+	HorizontalLayout contentC;
+	VerticalLayout uf;
+	VerticalLayout searchC;
+	VerticalLayout searchResultsC;
+	ManageUserModule mum;
 	//static final String WORK_AREA = "work_area";
-	@Override
-	public void enter(ViewChangeEvent event) {
+	public final static  String SESSION_WORK_AREA = "session_work_area";
+	public final static  String SESSION_VAR_WORK_AREA_ADD_USER = "add_user";
+	public final static  String SESSION_VAR_WORK_AREA_MANAGE_USER= "manage_user";
+	
+	
+	public WorkArea(){
+		setCoreUI();
+	}
+	
+	public void setCoreUI(){
+		/*parent_layout settings */
 		setSizeFull();
 		setMargin(false);
 		setStyleName("parent_layout");
 		
+		/*logo*/
+		
 		btnLogout = new Button("Logout");
 		
-		ThemeResource systemLogo = new ThemeResource("img/logo.jpg");
+		ThemeResource systemLogo = new ThemeResource("img/logo.png");
 		emb = new Embedded(null, systemLogo);
 		emb.setWidth("120px");
 		emb.setHeight("120px");
 		
-		Label lbUsername = new Label(UI.getCurrent().getSession().getAttribute("user").toString());
+		//Label lbUsername = new Label(Login.CUR_SESSION_OBJ.getAttribute("user").toString());
 		
 		HorizontalLayout c1 = new HorizontalLayout();
 		VerticalLayout c4 = new VerticalLayout();
@@ -64,7 +80,7 @@ public class WorkArea extends VerticalLayout implements View {
 		logoutC.setSpacing(true);
 		logoutC.setMargin(true);
 		logoutC.setStyleName("logout_c");
-		logoutC.addComponent(lbUsername);
+		//logoutC.addComponent(lbUsername);
 		logoutC.addComponent(btnLogout);
 		c4.addComponent(logoutC);
 		c4.setComponentAlignment(logoutC, Alignment.TOP_RIGHT);
@@ -101,10 +117,6 @@ public class WorkArea extends VerticalLayout implements View {
 		curActivityC.setComponentAlignment(imgCurActivity, Alignment.TOP_CENTER);
 		
 		
-		
-		
-		
-		
 		//////////////////////////////////////////////////////////////////////
 		VerticalLayout menuC = new VerticalLayout();
 		CustomLayout vmb = createAdminMenu();
@@ -124,7 +136,7 @@ public class WorkArea extends VerticalLayout implements View {
 		vmbC.addComponent(vmb);
 		menuC.addComponent(vmbC);
 		
-		HorizontalLayout contentC = new HorizontalLayout();
+		contentC = new HorizontalLayout();
 		contentC.setWidthUndefined();
 		contentC.setHeightUndefined();
 		contentC.setStyleName("content_c");
@@ -155,22 +167,23 @@ public class WorkArea extends VerticalLayout implements View {
 		g.setColumnExpandRatio(1, 1.0f);
 		
 		
-		
-		
 		addComponent(g);
 		setComponentAlignment(g, Alignment.MIDDLE_CENTER);
 		
+		AddUserForm auf = new AddUserForm();
+		uf = auf.getAddUserForm();
+		mum = new ManageUserModule();
+		searchC = mum.getSearchContainer();
+		searchResultsC = mum.getSearchResults();
+		searchResultsC.setSizeUndefined();
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	}
+	
+	
+	
+	@Override
+	public void enter(ViewChangeEvent event) {
 		/*
 		 * 
 		 * 
@@ -225,98 +238,84 @@ public class WorkArea extends VerticalLayout implements View {
 		
 		
 		
+		//String curURIFragment = event.getParameters().toString();
+		String curSessionWorkArea = (String) UI.getCurrent().getSession().getAttribute(WorkArea.SESSION_WORK_AREA);
+
 		
-		
-		if(event.getParameters().toString().equals("add_user")){
-			AddUserForm auf = new AddUserForm();
-			VerticalLayout uf = auf.getAddUserForm();
+		if(curSessionWorkArea.equals(SESSION_VAR_WORK_AREA_ADD_USER)){
 			contentC.addComponent(uf);
 			contentC.setComponentAlignment(uf, Alignment.MIDDLE_CENTER);
 			contentC.setSpacing(false);
 			contentC.setMargin(true);
 			contentC.setSizeFull();
-		}
-		
-		String curURIFragment = event.getParameters().toString();
-		
-		if(curURIFragment.equals("manage_user")){
-			ManageUserModule mum = new ManageUserModule();
 			
-			VerticalLayout searchC = mum.getSearchContainer();
-			//VerticalLayout operationC = mum.getUserOperationContainer();
-			
-			
-			contentC.addComponent(searchC);
-			//contentC.addComponent(operationC);
-			//contentC.addComponent(curActivityC);
-			
-			
-			contentC.setComponentAlignment(searchC, Alignment.MIDDLE_CENTER);
-			//contentC.setComponentAlignment(operationC, Alignment.TOP_LEFT);
-			//contentC.setComponentAlignment(curActivityC, Alignment.TOP_LEFT);
-			
-			
-			
-			contentC.setSizeFull();;
-			contentC.setSpacing(false);
-			contentC.setMargin(true);
-			
-		}
-		
-		if(curURIFragment.equals("search_user_results")){
-			ManageUserModule mum = new ManageUserModule();
-			
-			VerticalLayout searchC = mum.getSearchContainer();
-			
-			//VerticalLayout operationC = mum.getUserOperationContainer();
-			VerticalLayout searchResultsC = mum.getSearchResults();
-			searchC.setSizeUndefined();
-			searchResultsC.setSizeUndefined();
-			
-			
-			contentC.addComponent(searchC);
-			contentC.addComponent(searchResultsC);
-			//contentC.addComponent(curActivityC);
-			
-			
-			contentC.setComponentAlignment(searchC, Alignment.TOP_LEFT);
-			contentC.setComponentAlignment(searchResultsC, Alignment.TOP_CENTER);
-			//contentC.setComponentAlignment(curActivityC, Alignment.TOP_LEFT);
-			
-			
-			
-			contentC.setSizeUndefined();
-			contentC.setMargin(new MarginInfo(true, false, true, false));
-			contentC.setSpacing(false);
 			
 		}
 		
 		
 		
 		
-		/*if(UI.getCurrent().getSession().getAttribute(ManageUserModule.UMANAGE_SESSION_DETAILS) != null && curURIFragment.equals("user_details")){
-			ManageUserModule mum = new ManageUserModule();
+		
+		/*if(curSessionWorkArea.equals(SESSION_VAR_WORK_AREA_SEARCH_USER)){
 			
-			VerticalLayout detailsC = mum.getDetailsContainer();
-			VerticalLayout operationC = mum.getUserOperationContainer();
-			
-			
-			contentC.addComponent(detailsC);
-			contentC.addComponent(operationC);
-			//contentC.addComponent(curActivityC);
-			
-			
-			contentC.setComponentAlignment(detailsC, Alignment.TOP_RIGHT);
-			contentC.setComponentAlignment(operationC, Alignment.TOP_RIGHT);
-			//contentC.setComponentAlignment(curActivityC, Alignment.TOP_LEFT);
-			
-			
-			
-			contentC.setSizeFull();;
-			contentC.setMargin(true);
-			contentC.setSpacing(true);
+			String curSessionUManage = (String) CUR_SESSION_OBJ.getAttribute(ManageUserModule.SESSION_UMANAGE);
+			CUR_SESSION_OBJ.setAttribute(ManageUserModule.UMANAGE_SESSION_SEARCH, "search_user");
+			//CUR_SESSION_OBJ.setAttribute(ManageUserModule.UMANAGE_SESSION_SEARCH, "search_user");
 			
 		}*/
+		
+		
+		//
+		
+		String curSessionUManage = (String) UI.getCurrent().getSession().getAttribute(ManageUserModule.SESSION_UMANAGE);
+		
+		if(curSessionWorkArea.equals(SESSION_VAR_WORK_AREA_MANAGE_USER)){
+			
+			contentC.addComponent(searchC);
+			if(curSessionUManage.equals(ManageUserModule.SESSION_VAR_UMANAGE_SEARCH)){
+				contentC.setComponentAlignment(searchC, Alignment.MIDDLE_CENTER);
+				contentC.setSizeFull();;
+				contentC.setSpacing(false);
+				contentC.setMargin(true);
+			}
+		
+			if(curSessionUManage.equals(ManageUserModule.SESSION_VAR_UMANAGE_SEARCH_RESULTS)){
+				searchC.setSizeUndefined();
+				contentC.setComponentAlignment(searchC, Alignment.TOP_LEFT);
+				
+				contentC.addComponent(searchResultsC);
+				contentC.setComponentAlignment(searchResultsC, Alignment.TOP_CENTER);
+				
+				contentC.setSizeUndefined();
+				contentC.setMargin(new MarginInfo(true, false, true, false));
+				contentC.setSpacing(false);
+				
+			}
+			
+			
+			if(curSessionUManage.equals(ManageUserModule.SESSION_VAR_UMANAGE_USER_DETAILS)){
+				//searchC.setSizeUndefined();
+				//contentC.setComponentAlignment(searchC, Alignment.TOP_LEFT);
+								
+				VerticalLayout cuDetails = mum.getUserDetailsContainer();
+				
+				contentC.addComponent(cuDetails);
+				contentC.setComponentAlignment(cuDetails, Alignment.TOP_CENTER);
+				
+				contentC.setSizeUndefined();
+				contentC.setMargin(new MarginInfo(true, false, true, false));
+				contentC.setSpacing(false);
+				
+			}
+			
+		}	
+			
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -380,8 +379,8 @@ public class WorkArea extends VerticalLayout implements View {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				UI.getCurrent().getSession().setAttribute("user", null);
-				UI.getCurrent().getSession().setAttribute(ManageUserModule.UMANAGE_SESSION_SEARCH, null);
-				UI.getCurrent().getSession().setAttribute(ManageUserModule.UMANAGE_SESSION_DETAILS, null);
+				UI.getCurrent().getSession().setAttribute(ManageUserModule.SESSION_UMANAGE, null);
+				UI.getCurrent().getSession().setAttribute(SESSION_WORK_AREA, null);
 				UI.getCurrent().getNavigator().navigateTo(WORK_AREA);
 				
 			}

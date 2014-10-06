@@ -6,6 +6,7 @@ import com.vaadin.data.Item;
 import com.vaadin.data.Property;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
@@ -15,10 +16,9 @@ public class UserDetailsModule{
 		
 	}
 	
-	@SuppressWarnings("unchecked")
-	public Table getUserDetails(){
+	public String[] getUserDetails(String strCurID, String strCurTable){
 		
-		Table tb = new Table("Results for: \""+UI.getCurrent().getSession().getAttribute(ManageUserModule.UMANAGE_SESSION_SEARCH)+"\"  (Summary)");
+		/*Table tb = new Table("Results for: Admin (Summary)");
 		tb.addContainerProperty("UID", String.class, "000");
 		tb.addContainerProperty("Username", String.class, "");
 		tb.addContainerProperty("First Name", String.class, "");
@@ -76,10 +76,14 @@ public class UserDetailsModule{
 			dPropertyFieldValue.setValue(sProperty.getValue());
 			//dPropertyFieldValue.setReadOnly(false);
 	
-		}
+		}*/
 		
 		
 		
-		return tDetails;
+		//return null;
+		
+		String[] arrAllInfo = {"all"};
+		
+		return arrAllInfo;
 	}
 }

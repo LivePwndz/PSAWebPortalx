@@ -14,6 +14,7 @@ import com.vaadin.data.util.sqlcontainer.query.TableQuery;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.ThemeResource;
+import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Embedded;
@@ -25,6 +26,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.themes.ValoTheme;
 
 
 public class Login extends VerticalLayout implements View {
@@ -43,6 +45,7 @@ public class Login extends VerticalLayout implements View {
 	private final ObjectProperty<String> pUsername; 
 	private final ObjectProperty<String> pPassword;
 	
+	
 	private void loginPageContent(){
 		
 		setSizeFull();
@@ -57,7 +60,7 @@ public class Login extends VerticalLayout implements View {
 		logoContainer.setSizeUndefined();
 		logoContainer.setStyleName("logo_and_slogan_container");
 		//logoAndSloganContainer.setMargin(true);
-		ThemeResource rLogo = new ThemeResource("img/logo.jpg");
+		ThemeResource rLogo = new ThemeResource("img/logo.png");
 		//System.out.println(rLogo.toString());
 		Embedded emb = new Embedded(null, rLogo);
 		emb.setWidth("100px");
@@ -174,6 +177,7 @@ public class Login extends VerticalLayout implements View {
 		
 		
 		btnLogin = new Button("Login") ;
+		//btnLogin.setStyleName(ValoTheme.BUTTON_LINK);
 		panelLoginContent.addComponent(tfUsername);
 		panelLoginContent.addComponent(tfPassword);
 		panelLoginContent.addComponent(btnLogin);

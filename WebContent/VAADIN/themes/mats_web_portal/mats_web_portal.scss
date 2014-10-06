@@ -528,12 +528,29 @@ ul.empty li{
 
 .c_action_bulk{
 	//padding: 10px;
+	
 }
+
+
 
 .c_actions{
-	padding: 2px;
+	//padding: 1px;
+	//background: blue;
+	//border: none;
+	
 }
 
+.c_actions .v-button{
+	//padding: 2px;
+	//background: blue;
+	border: none;
+	margin-right: 2px;
+	
+}
+
+.ic_details{
+ 	background: #00F;
+}
 .search_user_form{
 	//padding-bottom: 30px;
 	//margin-right: 30px;
@@ -547,6 +564,8 @@ ul.empty li{
 .user_operation_img{
 	margin-bottom: 25px;
 }
+
+
 
 
 
@@ -625,6 +644,59 @@ ul.empty li{
 .pagedtable-itemsperpagecombobox{
 	width: 80px !important;
 	//background: yellow;
+}
+
+.frm_details_personal_info{
+	//background: #00F;
+	width: 100px important;
+	border-right: 1px solid #DDD;
+	border-radius: 10px;
+	margin-right: 50px;
+}
+
+.frm_details_personal_info .v-datefield, .frm_details_personal_info .v-filterselect, .frm_details_personal_info .v-textfield{
+	//background: #F0F;
+	//background: #FFF;
+	min-width: 150px;
+	max-width: 150px;
+	margin-bottom: 4px;
+	//.v-datefield,.v-filterselect-input
+	
+}
+
+
+
+.btn_link{
+	//padding: 0px;
+	//background: #F00;
+	//border: none;
+	//height: 10px;
+	
+	border: none;
+	margin-right: 2px;
+}
+
+.c_u_details{
+	//background: #0F0;
+}
+
+.label_frm_header{
+	
+}
+
+.v-caption-label_frm_header{
+	color: #197DE1;
+	padding: 5px;
+	background: #FFF;
+	//font-style: italic;
+	font-size: 15px;
+}
+
+.label_c_header{
+	color: #197DE1;
+	padding: 10px;
+	background: #FFF;
+	
 }
 
 

@@ -6,6 +6,7 @@ import com.vaadin.data.Property;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.ThemeResource;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.ComboBox;
@@ -57,41 +58,65 @@ public class SearchUserModule {
 		tdPropertyLname.setValue("Amama");
 		tdPropertyACCType.setValue("Administrator");
 		
-		//Embedded iconDetails = new Embedded("null", new ThemeResource("img/search_small.png"));
 		HorizontalLayout actionsC = new HorizontalLayout();
 		actionsC.setSizeUndefined();
+		actionsC.setStyleName("c_actions");
+		tdPropertyActions.setValue(actionsC);
 		
+		
+		BtnActionsClickable btnActionsClickListener = new BtnActionsClickable();
 		Button icDetails = new Button();
 		icDetails.setIcon(FontAwesome.ALIGN_JUSTIFY);
-		icDetails.setStyleName(ValoTheme.BUTTON_TINY);
-		icDetails.setStyleName(ValoTheme.BUTTON_BORDERLESS);
-		//icDetails.setStyleName(ValoTheme.LINK_SMALL);
+		icDetails.setId("user_"+tdPropertyUID.getValue());
+		icDetails.setDescription("Details");
+		icDetails.setStyleName(ValoTheme.BUTTON_ICON_ONLY);
+		icDetails.addClickListener(btnActionsClickListener);
 		actionsC.addComponent(icDetails);
+		
+		
+		//Embedded embDetails = new Embedded(null, FontAwesome.ALIGN_JUSTIFY);
+		/*VerticalLayout icDetails = new VerticalLayout();
+		icDetails.setSizeUndefined();
+		
+		
+		
+		icDetails.setStyleName("ic_details");
+		
+		icDetails.setIcon(FontAwesome.ALIGN_JUSTIFY);
+		actionsC.addComponent(icDetails);
+		actionsC.setComponentAlignment(icDetails, Alignment.MIDDLE_CENTER);*/
+		
+		
 		
 		Button icEdit = new Button();
 		icEdit.setIcon(FontAwesome.EDIT);
-		icEdit.setStyleName(ValoTheme.BUTTON_TINY);
-		icEdit.setStyleName(ValoTheme.BUTTON_BORDERLESS);
+		//icEdit.setStyleName(ValoTheme.BUTTON_TINY);
+		//icEdit.setStyleName(ValoTheme.BUTTON_BORDERLESS);
+		icEdit.setStyleName(ValoTheme.BUTTON_ICON_ONLY);
+		icEdit.setDescription("Edit");
 		actionsC.addComponent(icEdit);
 		
 		Button icLink = new Button();
+		icLink.setStyleName(ValoTheme.BUTTON_ICON_ONLY);
 		icLink.setIcon(FontAwesome.LINK);
-		icLink.setStyleName(ValoTheme.BUTTON_TINY);
-		icLink.setStyleName(ValoTheme.BUTTON_BORDERLESS);
+		icLink.setDescription("Link");
+		//icLink.setStyleName(ValoTheme.BUTTON_BORDERLESS);
 		actionsC.addComponent(icLink);
 		
 		Button icDelete = new Button();
 		icDelete.setIcon(new ThemeResource("img/ic_delete_small.png"));
-		icDelete.setStyleName(ValoTheme.BUTTON_TINY);
-		icDelete.setStyleName(ValoTheme.BUTTON_BORDERLESS);
+		icDelete.setDescription("Delete");
+		//icDelete.setStyleName(ValoTheme.BUTTON_BORDERLESS);
+		icDelete.setStyleName(ValoTheme.BUTTON_ICON_ONLY);
 		actionsC.addComponent(icDelete);
 		
 		Button icMoreActions = new Button("...");
+		icMoreActions.setDescription("More...");
+		//icMoreActions.setStyleName(ValoTheme.BUTTON_BORDERLESS);
 		icMoreActions.setStyleName(ValoTheme.BUTTON_ICON_ONLY);
-		icMoreActions.setStyleName(ValoTheme.BUTTON_BORDERLESS);
 		actionsC.addComponent(icMoreActions);
-		tdPropertyActions.setValue(actionsC);
-		actionsC.setStyleName("c_actions");
+	
+		
 		
 		
 		
