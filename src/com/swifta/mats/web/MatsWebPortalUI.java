@@ -8,14 +8,15 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
-import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
+import com.vaadin.ui.Window;
 
 @SuppressWarnings("serial")
 @Theme("mats_web_portal")
 //@PreserveOnRefresh
 
 public class MatsWebPortalUI extends UI {
+	
 	//public static VaadinSession CUR_SESSION_OBJ;
 	@WebServlet(value = "/*", asyncSupported = true)
 	@VaadinServletConfiguration(productionMode = false, ui = MatsWebPortalUI.class)

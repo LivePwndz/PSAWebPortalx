@@ -281,10 +281,10 @@ public class WorkArea extends VerticalLayout implements View {
 		
 			if(curSessionUManage.equals(ManageUserModule.SESSION_VAR_UMANAGE_SEARCH_RESULTS)){
 				searchC.setSizeUndefined();
-				contentC.setComponentAlignment(searchC, Alignment.TOP_LEFT);
+				contentC.setComponentAlignment(searchC, Alignment.TOP_RIGHT);
 				
 				contentC.addComponent(searchResultsC);
-				contentC.setComponentAlignment(searchResultsC, Alignment.TOP_CENTER);
+				contentC.setComponentAlignment(searchResultsC, Alignment.TOP_LEFT);
 				
 				contentC.setSizeUndefined();
 				contentC.setMargin(new MarginInfo(true, false, true, false));
@@ -294,17 +294,22 @@ public class WorkArea extends VerticalLayout implements View {
 			
 			
 			if(curSessionUManage.equals(ManageUserModule.SESSION_VAR_UMANAGE_USER_DETAILS)){
-				//searchC.setSizeUndefined();
+				searchC.setSizeUndefined();
+				//searchC.setSizeFull();
 				//contentC.setComponentAlignment(searchC, Alignment.TOP_LEFT);
+				contentC.setComponentAlignment(searchC, Alignment.TOP_RIGHT);
 								
 				VerticalLayout cuDetails = mum.getUserDetailsContainer();
 				
 				contentC.addComponent(cuDetails);
+				//cuDetails.setSizeUndefined();
 				contentC.setComponentAlignment(cuDetails, Alignment.TOP_CENTER);
+				contentC.setExpandRatio(cuDetails, 1.0f);
 				
-				contentC.setSizeUndefined();
+				contentC.setSizeFull();
 				contentC.setMargin(new MarginInfo(true, false, true, false));
 				contentC.setSpacing(false);
+				contentC.setStyleName("content_c");
 				
 			}
 			
